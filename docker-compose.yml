@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    ports:
+      - '8000:8000'
+    volumes:
+      - .:/app
+    environment:
+      - FLASK_ENV=development
+    command: flask --app app.web run --host=0.0.0.0 --port 8000
+
+  upload-server:
+    build:
+      context: ./upload-server # ファイルアップロードサーバーのDockerfileがあるディレクトリ
+    ports:
+      - '8050:8050'
+
+  worker:
+    build: .
+    command: inv devworker
+    volumes:
+      - .:/app
+    depends_on: # CeleryワーカーはRedisをメッセージブローカーとして使用しているため
+      - redis
+
+  redis:
+    image: redis:alpine
+    ports:
+      - '6379:6379'
