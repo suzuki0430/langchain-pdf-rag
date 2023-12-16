@@ -1,61 +1,23 @@
-# First Time Setup
+# 概要
 
-```
-# Create a virtual environment
-python -m venv .venv
+PDF を Retriever とした AI チャットボット。
 
-# On MacOS, WSL, Linux
-source .venv/bin/activate
+# ローカル環境構築
 
-# On Windows
-.\.venv\Scripts\activate
+## 事前準備
 
-# Install dependencies
-pip install -r requirements.txt
+`.env`で環境変数を設定する。
 
-# Initialize the database
-flask --app app.web init-db
-```
+## 構築手順
 
-# Running the app
+1. コンテナ起動
 
-There are three separate processes that need to be running for the app to work: the server, the worker, and Redis.
-
-If you stop any of these processes, you will need to start them back up!
-
-Commands to start each are listed below. If you need to stop them, select the terminal window the process is running in and press Control-C
-
-### To run the Python server
-
-```
-inv dev
-```
-
-### To run the worker
-
-```
-inv devworker
-```
-
-### To run Redis
-
-```
-redis-server
-```
-
-### To reset the database
-
-```
-flask --app app.web init-db
-```
-
-# docker-composeでの起動
-
-コンテナ起動
-```
+```bash
 docker-compose up --build
 ```
-DB初期化
-```
+
+2. DB 初期化
+
+```bash
 docker exec -it [コンテナ名] flask --app app.web init-db
 ```
