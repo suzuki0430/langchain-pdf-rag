@@ -9,6 +9,7 @@ class Config:
     SECRET_KEY = os.environ["SECRET_KEY"]
     SQLALCHEMY_DATABASE_URI = os.environ["SQLALCHEMY_DATABASE_URI"]
     UPLOAD_URL = os.environ["UPLOAD_URL"]
+    DOWNLOAD_URL = os.environ["DOWNLOAD_URL"]
     CELERY = {
         "broker_url": os.environ.get("REDIS_URI", False),
         "task_ignore_result": True,

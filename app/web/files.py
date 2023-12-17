@@ -16,6 +16,7 @@ def upload(local_file_path: str) -> Tuple[Dict[str, str], int]:
 
 def create_download_url(file_id):
     return f"{Config.UPLOAD_URL}/download/{file_id}"
+    # return f"{Config.DOWNLOAD_URL}/download/{file_id}"
 
 
 def download(file_id):
